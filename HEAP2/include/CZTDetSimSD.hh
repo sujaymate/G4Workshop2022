@@ -31,19 +31,23 @@
 #define CZTDETSIMSD_HH
 
 #include "G4VSensitiveDetector.hh" 
-#include "G4SystemOfUnits.hh"
-#include "G4SDManager.hh"
+#include "CZTDetSimHit.hh"
 
-#include "CZTDetSimEventAction.hh"
-
+class G4Step;
+class G4HCofThisEvent;
 class CZTDetSimSD : public G4VSensitiveDetector
 {
     public:
     
-        CZTDetSimSD(G4String);
-        ~CZTDetSimSD();
+        CZTDetSimSD(const G4String& name,
+                    const G4String& hitsCollectionName);
+        virtual ~CZTDetSimSD();
         
-        virtual G4bool ProcessHits(G4Step*, G4TouchableHistory*);
+        virtual void Initialize(G4HCofThisEvent* hce);
+        virtual G4bool ProcessHits(G4Step* aStep, G4TouchableHistory* history);
+
+    private:
+        CZTDetSimHitCollection* fHitsCollection;
     
 };
 

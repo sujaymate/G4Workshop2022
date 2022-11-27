@@ -129,7 +129,8 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
 
 void CZTDetSimDetectorConstruction::ConstructSDandField()
 {
-    CZTDetSimSD* CZTSD = new CZTDetSimSD("CZTSD"); 
-    CZTWaferLV->SetSensitiveDetector(CZTSD);
+    CZTDetSimSD* CZTSD = new CZTDetSimSD("CZTSD", "CZTDetSimHitsCollection");  // Add SD and hits collection name 
+    G4SDManager::GetSDMpointer()->AddNewDetector(CZTSD);
+    SetSensitiveDetector("CZTWaferLV", CZTSD);
 }
 

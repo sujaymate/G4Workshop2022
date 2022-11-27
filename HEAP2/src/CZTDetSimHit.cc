@@ -30,19 +30,58 @@
 #include "CZTDetSimHit.hh"
 
 // Define the allocator
-G4Allocator<CZTDetSimHit>* CZTDetSimHitAllocator;
+G4ThreadLocal G4Allocator<CZTDetSimHit>* CZTDetSimHitAllocator = 0;
 
 CZTDetSimHit::CZTDetSimHit()
+: G4VHit(),
+fTotalEdep(0.0)
 {}
 
 //***********************************************/
 
-CZTDetSimHit::~CZTDetSimSD()
+CZTDetSimHit::~CZTDetSimHit()
 {}
 
 //***********************************************/
 
 CZTDetSimHit::CZTDetSimHit(const CZTDetSimHit& right)
 : G4VHit()
-{}
+{
+    fTotalEdep = right.fTotalEdep;
+}
 
+//***********************************************/
+
+const CZTDetSimHit& CZTDetSimHit::operator=(const CZTDetSimHit& right)
+{
+    fTotalEdep = right.fTotalEdep;
+    return *this;
+}
+
+//***********************************************/
+
+G4int CZTDetSimHit::operator==(const CZTDetSimHit& right) const
+{
+    return ( this == &right ) ? 1 : 0;
+}
+
+//***********************************************/
+
+void CZTDetSimHit::Print()
+{
+
+}
+
+//***********************************************/
+
+void CZTDetSimHit::AddEdep(G4double edep)
+{
+    fTotalEdep += edep;
+}
+
+//***********************************************/
+
+G4double CZTDetSimHit::GetEdep() const
+{
+    return fTotalEdep;
+}

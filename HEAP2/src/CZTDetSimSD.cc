@@ -28,10 +28,17 @@
  */
 
 #include "CZTDetSimSD.hh"
+#include "G4Step.hh"
+#include "G4VTouchable.hh"
+#include "G4SystemOfUnits.hh"
+#include "G4SDManager.hh"
 
-CZTDetSimSD::CZTDetSimSD(G4String name) : G4VSensitiveDetector(name)
+CZTDetSimSD::CZTDetSimSD(const G4String &name,
+                         const G4String &hitsCollectionName)
+: G4VSensitiveDetector(name),
+fHitsCollection(nullptr)
 {
-
+    collectionName.insert(hitsCollectionName);
 }
 
 //***********************************************/
@@ -43,6 +50,33 @@ CZTDetSimSD::~CZTDetSimSD()
 
 //***********************************************/
 
-G4bool CZTDetSimSD::ProcessHits(G4Step *aStep, G4TouchableHistory *THist)
+void CZTDetSimSD::Initialize(G4HCofThisEvent* hce)
 {
+    // Create a new hitscollection fot the event
+    fHitsCollection = new CZTDetSimHitCollection(SensitiveDetectorName, collectionName[0]);
+
+    // Add this collection to this events hits
+    auto hcID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
+    hce->AddHitsCollection(hcID, fHitsCollection);
+
+    // Create hits
+    fHitsCollection->insert(new CZTDetSimHit());
+}
+
+//***********************************************/
+
+G4bool CZTDetSimSD::ProcessHits(G4Step *aStep, G4TouchableHistory *history)
+{
+    // Get energy deposit in this step
+    G4double edep = aStep->GetTotalEnergyDeposit()/keV;
+
+
+    // exit if edep is zero
+    if (edep > 0.)
+    {
+        // Create a hit if it doesn't exist else add the edep to existing hit
+        auto CZThit = (*fHitsCollection)[0];
+        CZThit->AddEdep(edep);
+    }
+    return true;
 }

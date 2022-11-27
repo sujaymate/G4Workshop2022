@@ -32,6 +32,7 @@
 
 #include "G4VHit.hh"
 #include "G4THitsCollection.hh"
+#include "G4Threading.hh"
 #include "G4Allocator.hh"
 
 class CZTDetSimHit : public G4VHit
@@ -42,6 +43,10 @@ class CZTDetSimHit : public G4VHit
         CZTDetSimHit(const CZTDetSimHit&);
         virtual ~CZTDetSimHit();
 
+        // operators
+        const CZTDetSimHit& operator=(const CZTDetSimHit&);
+        G4int operator==(const CZTDetSimHit&) const;
+
         // method for memory allocaion
         inline void* operator new(size_t);
         inline void  operator delete(void* hit);
@@ -50,6 +55,14 @@ class CZTDetSimHit : public G4VHit
         virtual void Draw() {}
         virtual void Print();
 
+        // accumulate edep
+        void AddEdep(G4double);
+
+        // Access total edep
+        G4double GetEdep() const;
+
+    private:
+        G4double fTotalEdep;
 
 };
 
@@ -62,12 +75,20 @@ extern G4ThreadLocal G4Allocator<CZTDetSimHit>* CZTDetSimHitAllocator;
 // Define the new and delete allocator operations
 inline void* CZTDetSimHit::operator new(size_t)
 {
+    if (!CZTDetSimHitAllocator)
+    {
+        CZTDetSimHitAllocator = new G4Allocator<CZTDetSimHit>;
+    }
     return (void*)CZTDetSimHitAllocator->MallocSingle();
 }
 
 inline void CZTDetSimHit::operator delete(void* hit)
 {
-    return CZTDetSimHitAllocator->FreeSingle((CZTDetSimHit*)hit);
+    if (!CZTDetSimHitAllocator)
+    {
+        CZTDetSimHitAllocator = new G4Allocator<CZTDetSimHit>;
+    }
+    CZTDetSimHitAllocator->FreeSingle((CZTDetSimHit*)hit);
 }
 
 #endif

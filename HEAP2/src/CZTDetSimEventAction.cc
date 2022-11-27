@@ -28,6 +28,7 @@
  */
 
 #include "CZTDetSimEventAction.hh"
+#include "CZTDetSimHit.hh"
 
 CZTDetSimEventAction::CZTDetSimEventAction()
 {
@@ -51,4 +52,15 @@ void CZTDetSimEventAction::BeginOfEventAction(const G4Event* event)
 
 void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
 {
+    // Get hits collections of this event
+    auto hce = event->GetHCofThisEvent();
+    auto aHitsCollection = hce->GetHC(0);
+    
+    unsigned nHits = aHitsCollection->GetSize();
+    for (unsigned i=0; i<nHits; i++)
+    {
+        auto aHit = static_cast<CZTDetSimHit*>(aHitsCollection->GetHit(i));
+        G4double EdepTotal = aHit->GetEdep();
+        G4cout << "EventID: " << event->GetEventID() << "; Energy: " << EdepTotal << " keV" << G4endl;
+    }
 }
