@@ -32,6 +32,7 @@
 #include "G4VTouchable.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4SDManager.hh"
+#include "G4ThreeVector.hh"
 
 CZTDetSimSD::CZTDetSimSD(const G4String &name,
                          const G4String &hitsCollectionName)
@@ -59,8 +60,11 @@ void CZTDetSimSD::Initialize(G4HCofThisEvent* hce)
     auto hcID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
     hce->AddHitsCollection(hcID, fHitsCollection);
 
-    // Create hits
-    fHitsCollection->insert(new CZTDetSimHit());
+    // Create hits for each pixel
+    for (unsigned int i=0; i<256; i++)
+    {
+        fHitsCollection->insert(new CZTDetSimHit());
+    }
 }
 
 //***********************************************/
@@ -69,13 +73,27 @@ G4bool CZTDetSimSD::ProcessHits(G4Step *aStep, G4TouchableHistory *history)
 {
     // Get energy deposit in this step
     G4double edep = aStep->GetTotalEnergyDeposit()/keV;
+    G4StepPoint* preStepPoint = aStep->GetPreStepPoint();
 
+    // Define pixel size
+    G4double pixelSize = 2.5;  // in mm
+    G4double CZTWaferSize = 40.0;  // in mm
 
-    // exit if edep is zero
+    // Exit if edep is zero
     if (edep > 0.)
     {
-        // Create a hit if it doesn't exist else add the edep to existing hit
-        auto CZThit = (*fHitsCollection)[0];
+        // Get energy deposition position
+        G4ThreeVector edepPos = preStepPoint->GetPosition();
+        G4double edepPosX = edepPos.x()/mm;
+        G4double edepPosY = edepPos.y()/mm;
+
+        // Pixellate the detector according the expected scheme
+        G4int i = floor((edepPosX + CZTWaferSize/2) / pixelSize);
+        G4int j = floor((edepPosY + CZTWaferSize/2) / pixelSize);
+        G4int pixID = i + 16*j;
+
+        // Access the hit of this pixel and add the edep
+        auto CZThit = (*fHitsCollection)[pixID];
         CZThit->AddEdep(edep);
     }
     return true;

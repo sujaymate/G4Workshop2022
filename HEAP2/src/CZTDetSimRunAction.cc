@@ -61,6 +61,7 @@ void CZTDetSimRunAction::BeginOfRunAction(const G4Run* run)
     // create the ntuple
     analysisManager->CreateNtuple("Edep", "Energy deposition in CZT");
     analysisManager->CreateNtupleIColumn("eventID");
+    analysisManager->CreateNtupleIColumn("pixID");
     analysisManager->CreateNtupleFColumn("totalEdep");
     analysisManager->FinishNtuple(0);
 }
