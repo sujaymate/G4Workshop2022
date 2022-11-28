@@ -32,7 +32,8 @@
 
 CZTDetSimRunAction::CZTDetSimRunAction()
 : G4UserRunAction()
-{   
+{
+    remove("*.root"); 
 }
 
 //***********************************************/
