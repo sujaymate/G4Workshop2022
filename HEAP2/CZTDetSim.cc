@@ -50,6 +50,12 @@ int main(int argc, char** argv)
      
     // Construct the run manager
     G4RunManager* runManager = new G4RunManager;
+    
+    // Choose the Random engine and set time dependent seed
+    //CLHEP::RanluxEngine defaultEngine( 1234567, 4 );
+    G4Random::setTheEngine(new CLHEP::RanecuEngine);
+    G4long seed = time(NULL);
+    G4Random::setTheSeed(seed);
 
     // Set mandatory initialization classes
 
