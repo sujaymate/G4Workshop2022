@@ -29,6 +29,7 @@
 
 #include "CZTDetSimEventAction.hh"
 #include "CZTDetSimHit.hh"
+#include "g4root.hh"
 
 CZTDetSimEventAction::CZTDetSimEventAction()
 {
@@ -61,6 +62,12 @@ void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
     {
         auto aHit = static_cast<CZTDetSimHit*>(aHitsCollection->GetHit(i));
         G4double EdepTotal = aHit->GetEdep();
-        G4cout << "EventID: " << event->GetEventID() << "; Energy: " << EdepTotal << " keV" << G4endl;
+
+        // call analysis manager
+        auto analysisManager = G4AnalysisManager::Instance();
+        G4int evtID = event->GetEventID();
+        analysisManager->FillNtupleIColumn(0, 0, evtID);
+        analysisManager->FillNtupleFColumn(0, 1, EdepTotal);
+        analysisManager->AddNtupleRow(0);
     }
 }

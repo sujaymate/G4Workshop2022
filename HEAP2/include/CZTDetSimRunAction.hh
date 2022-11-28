@@ -35,9 +35,9 @@
 
 class CZTDetSimRunAction : public G4UserRunAction
 {
-public:
-    CZTDetSimRunAction();
-    ~CZTDetSimRunAction();
+    public:
+        CZTDetSimRunAction();
+        ~CZTDetSimRunAction();
     
     virtual void BeginOfRunAction(const G4Run*);
     virtual void EndOfRunAction(const G4Run*);

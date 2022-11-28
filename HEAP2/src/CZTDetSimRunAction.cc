@@ -28,27 +28,43 @@
  */
 
 #include "CZTDetSimRunAction.hh"
+#include "g4root.hh"
 
 CZTDetSimRunAction::CZTDetSimRunAction()
-{
-
+: G4UserRunAction()
+{   
 }
 
 //***********************************************/
 
 CZTDetSimRunAction::~CZTDetSimRunAction()
 {
-
 }
 
 //***********************************************/
 
 void CZTDetSimRunAction::BeginOfRunAction(const G4Run* run)
 {
+    // Book Edep Ntuple
+    auto analysisManager = G4AnalysisManager::Instance();
+    G4cout << "Using " << analysisManager->GetType() << G4endl;
+    analysisManager->SetVerboseLevel(1);
+    analysisManager->SetFileName("CZTDetSimRun");  // Set root filename
+    analysisManager->OpenFile();
+
+    // create the ntuple
+    analysisManager->CreateNtuple("Edep", "Energy deposition in CZT");
+    analysisManager->CreateNtupleIColumn("eventID");
+    analysisManager->CreateNtupleFColumn("totalEdep");
+    analysisManager->FinishNtuple(0);
 }
 
 //***********************************************/
 
 void CZTDetSimRunAction::EndOfRunAction(const G4Run* run)
-{
+{   
+    auto analysisManager = G4AnalysisManager::Instance();
+    analysisManager->Write();
+    analysisManager->CloseFile();
+    delete G4AnalysisManager::Instance();
 }
