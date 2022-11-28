@@ -56,6 +56,9 @@ int main(int argc, char** argv)
     G4Random::setTheEngine(new CLHEP::RanecuEngine);
     G4long seed = time(NULL);
     G4Random::setTheSeed(seed);
+    
+    // Remove old root files
+    system("rm *.root"); 
 
     // Set mandatory initialization classes
 

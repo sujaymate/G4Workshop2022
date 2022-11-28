@@ -63,11 +63,15 @@ void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
         auto aHit = static_cast<CZTDetSimHit*>(aHitsCollection->GetHit(i));
         G4double EdepTotal = aHit->GetEdep();
 
-        // call analysis manager
-        auto analysisManager = G4AnalysisManager::Instance();
-        G4int evtID = event->GetEventID();
-        analysisManager->FillNtupleIColumn(0, 0, evtID);
-        analysisManager->FillNtupleFColumn(0, 1, EdepTotal);
-        analysisManager->AddNtupleRow(0);
+        // store the edep if the value is non-zero
+        if (EdepTotal > 0.)
+        {
+            // call analysis manager
+            auto analysisManager = G4AnalysisManager::Instance();
+            G4int evtID = event->GetEventID();
+            analysisManager->FillNtupleIColumn(0, 0, evtID);
+            analysisManager->FillNtupleFColumn(0, 1, EdepTotal);
+            analysisManager->AddNtupleRow(0);
+        }
     }
 }

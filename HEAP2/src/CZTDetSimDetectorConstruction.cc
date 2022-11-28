@@ -74,11 +74,11 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
     G4Material* Zn = nistManager->FindOrBuildMaterial("G4_Zn");
     G4Material* Te = nistManager->FindOrBuildMaterial("G4_Te");
 
-    G4Material* CZT = new G4Material("CZTI",5.85*g/cm3, 3);
+    G4Material* CZT = new G4Material("CZT",5.78*g/cm3, 3);
 
-	CZT->AddMaterial(Cd, 0.4299);
-	CZT->AddMaterial(Te, 0.5423);
-	CZT->AddMaterial(Zn, 0.0278);
+	CZT->AddMaterial(Cd, 0.430016);
+	CZT->AddMaterial(Te, 0.542194);
+	CZT->AddMaterial(Zn, 0.027790);
     
     //Define World
 	G4double wR = 10.0*m; // world radius
@@ -102,9 +102,9 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
 
 
     // Build CZT wafer
-    G4double hx = 4.0*cm;
-    G4double hy = 4.0*cm;
-    G4double hz = 5.0*mm;
+    G4double hx = 2.0*cm;
+    G4double hy = 2.0*cm;
+    G4double hz = 2.5*mm;
 
     G4VSolid* CZTWaferS = new G4Box("CZTWaferS", hx, hy, hz);
 
