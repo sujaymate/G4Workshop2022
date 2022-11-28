@@ -49,7 +49,13 @@ void CZTDetSimRunAction::BeginOfRunAction(const G4Run* run)
     auto analysisManager = G4AnalysisManager::Instance();
     G4cout << "Using " << analysisManager->GetType() << G4endl;
     analysisManager->SetVerboseLevel(1);
-    analysisManager->SetFileName("CZTDetSimRun");  // Set root filename
+    G4int runID = run->GetRunID();
+
+    // Define root filename based on runID.
+    std::stringstream fname;
+    fname << "CZTDetSimRun_" << std::setw(2) << std::setfill('0') << runID;
+
+    analysisManager->SetFileName(fname.str());  // Set root filename
     analysisManager->OpenFile();
 
     // create the ntuple

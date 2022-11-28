@@ -49,6 +49,7 @@ set(CZTDetSim_SCRIPTS
   init_vis.mac
   icons.mac
   run.mac
+  single_run.mac
   run.png
   vis.mac
   )
