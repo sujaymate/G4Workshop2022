@@ -74,7 +74,7 @@ There will be 26 cassettes of dimension 302 cm x 302 cm x 3.0345 cm, each will c
 3) one 300 cm x 300 cm layer of Cu (density : 8.96 g/cm3) with 6.05 mm thickness
 4) Another layer of CuW of same dimension as above
 5) Another layer of Si of same dimension as above
-6) one 300 cm x 300 cm layer of Pb (density : 4.97 mm) with 6.05 mm thickness
+6) one 300 cm x 300 cm layer of Pb (density : 11.35 g/cm3) with 4.97 mm thickness
 
 The list of files are same as above.
 If you now shoot a particle it will create like the image below.
