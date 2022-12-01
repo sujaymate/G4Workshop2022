@@ -55,7 +55,7 @@ hgc-exec.cc
 particlegun.cc  
 particlegun.hh
 
-After successfull implementation you should see the proton track as in the image below.
+After successful implementation you should see the proton track as in the image below.
 
 
 <p float="center">
@@ -64,16 +64,16 @@ After successfull implementation you should see the proton track as in the image
 
 ---
 
-## Probelm 4
+## Problem 4
 
 Now modify the detector construction file (hgcaldetector.cc) to place the detector components. 
 
-There will be 26 cassettes of dimention 302 cm x 302 cm x 3.0345 cm, each will contain consecutive layers of
+There will be 26 cassettes of dimension 302 cm x 302 cm x 3.0345 cm, each will contain consecutive layers of
 1) one 300 cm x 300 cm layer of Si (density : 2.33 g/cm3) with 0.3 mm of thickness
 2) one 300 cm x 300 cm layer of CuW (density : 14.979 g/cm3, W:Cu = 75%:25%) with 1.4 mm thickness
 3) one 300 cm x 300 cm layer of Cu (density : 8.96 g/cm3) with 6.05 mm thickness
 4) Another layer of CuW of same dimension as above
-5) Anotehr layer of Si of same dimension as above
+5) Another layer of Si of same dimension as above
 6) one 300 cm x 300 cm layer of Pb (density : 4.97 mm) with 6.05 mm thickness
 
 The list of files are same as above.
@@ -104,7 +104,7 @@ sensitivedetector.cc
 sensitivedetector.hh
 
 Check that you do not have any volume overlap issue.
-On successfull operation you would find a picture like below.
+On successful operation you would find a picture like below.
 
 <p float="center">
   <img src="./Problem_05/image/output_05.png" height="700" width="800" alt="Sensitive Detector" title="Sensitive Detector segment"/>  
@@ -113,7 +113,7 @@ On successfull operation you would find a picture like below.
 ---
 ## Problem 6
 
-Store the X,Y,Z,T of particle hit position and the X,Y,Z as obtained from detector in two diffrent ntuples of root file. Also store the event numbers in those two branches.
+Store the X,Y,Z,T of particle hit position and the X,Y,Z as obtained from detector in two different ntuples of root file. Also store the event numbers in those two branches.
 a) You learn how to store information in a ROOT file by deriving methods from G4UserRunAction class.
 
 The list of files are,  
@@ -163,7 +163,7 @@ steppingaction.hh
 One can see the energy loss information as separate branch.
 
 <p float="center">
-  <img src="./Problem_07/image/output_07.png" height="400" width="600" alt="Scoring" title="Scoring energy loss in sesitive volume"/>  
+  <img src="./Problem_07/image/output_07.png" height="400" width="600" alt="Scoring" title="Scoring energy loss in sensitive volume"/>  
 </p>
 
 
@@ -189,11 +189,11 @@ The list of files are same as before.
 ---
 ## Problem 10
 
-The motivation of EM calorimeter is to fully contain the shower originated from high energy (upto 1 TeV) electron or gamma. Plot the fraction of shower containment as a function of radition length as in the upper plot of the picture below.
+The motivation of EM calorimeter is to fully contain the shower originated from high energy (up-to 1 TeV) electron or gamma. Plot the fraction of shower containment as a function of radiation length as in the upper plot of the picture below.
 
 
 <p float="center">
-  <img src="./Problem_09/image/shower_containment.png" height="700" width="800" alt="shower containment" title="Shower containment : (Ref : Calorimetry,  by Richard Wigmans, Scientifica Acta 2, No. 1, 18 – 55 (2008))"/>  
+  <img src="./Problem_09/image/shower_containment.png" height="700" width="800" alt="shower containment" title="Shower containment : (Ref : Calorimetry,  by Richard Wigmans, Scientifica Acta 2, No. 1, 18 - 55 (2008))"/>  
 </p>
 
 The list of files are same as before.
@@ -202,4 +202,4 @@ The list of files are same as before.
 
 #### Acknowledgment
 
-Much of the toturials is prepared using the GEANT4 examples and "Physics Matters" youtube channel by Mustafa Schmidt.
+Much of the tutorials is prepared using the GEANT4 examples and "Physics Matters" YouTube channel by Mustafa Schmidt.
