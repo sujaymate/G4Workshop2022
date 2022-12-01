@@ -76,8 +76,8 @@ G4bool CZTDetSimSD::ProcessHits(G4Step *aStep, G4TouchableHistory *history)
     G4StepPoint* preStepPoint = aStep->GetPreStepPoint();
 
     // Define pixel size
-    G4double pixelSize = 2.5;  // in mm
-    G4double CZTWaferSize = 40.0;  // in mm
+    G4double pixelSize = 2.46;  // in mm
+    G4double CZTWaferSize = 39.36;  // in mm
 
     // Exit if edep is zero
     if (edep > 0.)

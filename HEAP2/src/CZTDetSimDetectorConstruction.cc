@@ -46,7 +46,7 @@
 // Detector construction headers
 #include "CZTDetSimDetectorConstruction.hh"
 #include "CZTDetSimSD.hh"
-
+#include "CADMesh.hh"
 
 CZTDetSimDetectorConstruction::CZTDetSimDetectorConstruction()
     : G4VUserDetectorConstruction()
@@ -73,6 +73,7 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
     G4Material* Cd = nistManager->FindOrBuildMaterial("G4_Cd");
     G4Material* Zn = nistManager->FindOrBuildMaterial("G4_Zn");
     G4Material* Te = nistManager->FindOrBuildMaterial("G4_Te");
+    G4Material* Ta = nistManager->FindOrBuildMaterial("G4_Ta");
 
     G4Material* CZT = new G4Material("CZT",5.78*g/cm3, 3);
 
@@ -102,11 +103,11 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
 
 
     // Build CZT wafer
-    G4double hx = 2.0*cm;
-    G4double hy = 2.0*cm;
-    G4double hz = 2.5*mm;
+    G4double hx = 3.936*cm;
+    G4double hy = 3.936*cm;
+    G4double hz = 5.*mm;
 
-    G4VSolid* CZTWaferS = new G4Box("CZTWaferS", hx, hy, hz);
+    G4VSolid* CZTWaferS = new G4Box("CZTWaferS", hx/2., hy/2., hz/2.);
 
     CZTWaferLV = new G4LogicalVolume(CZTWaferS, CZT, "CZTWaferLV");
 
@@ -123,6 +124,24 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
     G4VisAttributes *CZTWaferVisatt = new G4VisAttributes(G4Color::Green());
     CZTWaferVisatt->SetForceSolid();
     CZTWaferLV->SetVisAttributes(CZTWaferVisatt);
+
+    // CADMesh import
+    auto MaskMesh = CADMesh::TessellatedMesh::FromSTL("../G4Workshop2022/HEAP2/src/CAM.stl");
+    G4VSolid* MaskS = MaskMesh->GetSolid();
+    G4LogicalVolume* MaskLV = new G4LogicalVolume(MaskS, Ta, "MaskLV");
+    G4VPhysicalVolume* mask = new G4PVPlacement(0,
+                                                G4ThreeVector(0, 0, 5.*cm),
+                                                MaskLV,
+                                                "Mask",
+                                                worldLV,
+                                                false,
+                                                0,
+                                                true);
+
+    // Set visualisation attributes    
+    G4VisAttributes *MaskVisatt = new G4VisAttributes(G4Color::Red());
+    MaskVisatt->SetForceSolid();
+    MaskLV->SetVisAttributes(MaskVisatt);
 
     return worldPV;  // Always return the world volume !!!!!
 }
