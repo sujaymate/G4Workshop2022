@@ -37,11 +37,14 @@ eventID, index, counts = np.unique(events[:, 0], return_index=True, return_count
 single_events = events[index[counts == 1]]
 
 # plot the spectra
-ebins = np.arange(19.5, 200.6, 1)
+emax = single_events[:, 2].max()
+ebins = np.arange(19.5, emax + 0.6, 1)  # 0.6 so the bin edges align properly
 n, bins = np.histogram(single_events[:, 2], bins=ebins)
 bins = (bins[:-1] + bins[1:]) / 2
 
 plt.semilogy(bins, n, ds='steps')
 plt.xlabel("Energy (keV)")
 plt.ylabel("Counts")
+plt.title("Input energy: {0:3.0f} keV".format(emax))
+plt.savefig(rootfname.stem + ".png")
 plt.show()
