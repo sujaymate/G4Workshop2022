@@ -39,9 +39,10 @@ eff_nist = 1 - np.exp(-nist_data[:, 1]*5.78*0.5)  # 5.78 g/cc CZT density, 0.5 c
 eff_g4 = nDet/nphsim
 
 # plot both efficiencies
-plt.plot(inp_Energies, eff_g4, label="GEANT4")
-plt.plot(nist_data[:, 0], eff_nist, label="NIST")
+plt.plot(inp_Energies, eff_g4, 'o', label="GEANT4")
+plt.plot(nist_data[:, 0], eff_nist, 'o', label="NIST")
 plt.xlabel("Energy (keV)")
 plt.ylabel("Efficiency")
 plt.legend()
+plt.savefig("CZT_photon_efficiency_vs_energy.png")
 plt.show()
