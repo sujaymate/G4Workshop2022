@@ -30,7 +30,7 @@ and using the outputs from Geant4, plot the spectra of scattered photons
 of azimuthal angle for the range of theta between -70 to +70 as shown
 below
 
-(Give the final plots here)
+![Scattered photon spectra][./python-analysis//figures/unpol_eneHist.png "Scattered photon spectra"]
 
 2) Repeat the above exercise with the same setup, but with the incident
 photons polarized. Plot the same as above for two different polarization

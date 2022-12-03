@@ -1,5 +1,5 @@
 /gps/particle gamma
-/gps/energy 60 keV
+/gps/energy 50 keV
 /gps/direction 0 0 -1
 /gps/pos/centre 0 0 10 cm
 /gps/pos/type Plane
@@ -10,4 +10,4 @@
 /gps/polarization 0.00000 0.0 0.0
 
 /tracking/verbose 0
-/run/beamOn 100
+/run/beamOn 1000

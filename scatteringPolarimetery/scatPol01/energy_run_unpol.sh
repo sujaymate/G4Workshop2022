@@ -1,7 +1,7 @@
-for ene in 020 025 030 035 040 050 060 070 080 090 100; do
+for ene in 010 020 050 100; do
     echo "Working for energy ${ene}"
 
-cat > gps.mac << EOF
+cat > gps_unpol.mac << EOF
 
 /gps/particle gamma
 /gps/energy $ene keV
@@ -17,8 +17,8 @@ cat > gps.mac << EOF
 /run/beamOn 1000000
 EOF
 
-ScatPol gps.mac > verbose.out
+ScatPol gps_unpol.mac > verbose.out
 
-mv sim_output.txt ../results/sim_output_$ene.txt
+mv sim_output.txt ../results/sim_output_${ene}_UNPOL.txt
 
 done
