@@ -48,7 +48,9 @@ target_link_libraries(CZTDetSim CCfits)
 set(CZTDetSim_SCRIPTS
   init_vis.mac
   icons.mac
-  run.mac
+  run_monoE.mac
+  run_monoE_loop.mac
+  run_pow.mac
   single_run.mac
   run.png
   vis.mac
