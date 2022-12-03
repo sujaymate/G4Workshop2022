@@ -15,8 +15,8 @@
 /gps/particle gamma
 /gps/pos/type Plane
 /gps/pos/shape Square
-/gps/pos/halfx 39.36 cm
-/gps/pos/halfy 39.36 cm
+/gps/pos/halfx 39.36 mm
+/gps/pos/halfy 39.36 mm
 /gps/pos/centre 0 0 5 cm
 /gps/direction 0 0 -1
 /gps/ene/type Pow
@@ -24,4 +24,4 @@
 /gps/ene/max 210 keV
 /gps/ene/alpha -1.0
 
-/control/loop single_run.mac Ekin 20. 30. 10
+/run/beamOn 94332
