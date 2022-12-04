@@ -10,14 +10,12 @@ cat > gps_pol.mac << EOF
 /gps/pos/type Plane
 /gps/pos/shape Circle
 /gps/pos/radius 0.1 mm
-/gps/pos/rot1 0 0 1
-/gps/pos/rot2 1 0 0
 /gps/polarization 1.00000 0.0 0.0
 /tracking/verbose 0
 /run/beamOn 1000000
 EOF
 
-ScatPol gps_pol.mac > verbose.out
+./ScatPol gps_pol.mac > verbose.out
 
 mv sim_output.txt ../results/sim_output_${ene}_POL00.txt
 

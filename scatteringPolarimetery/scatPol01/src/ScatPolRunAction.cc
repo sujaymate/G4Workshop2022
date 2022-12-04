@@ -26,7 +26,6 @@ ScatPolRunAction::~ScatPolRunAction()
 void ScatPolRunAction::BeginOfRunAction(const G4Run* aRun)
 {
 	allEvtData.clear();
-    file_out=fopen("sim_output.txt","w");
 }
 
 
@@ -37,6 +36,8 @@ void ScatPolRunAction::WritePerEvent(evtdata &evt_data)
 
 void ScatPolRunAction::EndOfRunAction(const G4Run* aRun)
 {
+
+  file_out=fopen("sim_output.txt","w");
 
   for (int i=0;i<allEvtData.size();i++)
   {

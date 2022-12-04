@@ -1,5 +1,5 @@
 # plotScatAngDist.py: Plot Energy histogram, scattering angle histograms 
-# from the Geant4 simulation results of step 1 and 2 
+# from the Geant4 simulation results of step 1 
 
 import glob
 import numpy as np
