@@ -1,8 +1,0 @@
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/CZTDetSim.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/CZTPhysicsSimulation.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/edit_cache.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/rebuild_cache.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/list_install_components.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/install.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/install/local.dir
-/home/geant/G4_sri/HEAP21/build/CMakeFiles/install/strip.dir
