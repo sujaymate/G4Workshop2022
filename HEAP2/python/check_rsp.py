@@ -19,7 +19,7 @@ parser.add_argument("--norm", type=int, default=2, help="Power-law norm")
 parser.add_argument("--alpha", type=float, default=-1, help="Power-la photon index")
 parser.add_argument("--emin", type=float, default=10, help="Min. energy in power-law spec simulation")
 parser.add_argument("--emax", type=float, default=210, help="Min. energy in power-law spec simulation")
-parser.add_argument("--delT", type=float, default=1000, help="Source duration")
+parser.add_argument("--delT", type=float, default=2000, help="Source duration")
 args = parser.parse_args()
 
 rootfname = Path(args.rootfname)
@@ -63,6 +63,7 @@ single_events = events[index[counts == 1]]
 
 # get the detected counts spectra (cnt / s)
 spec_det, bins = np.histogram(single_events[:, 2], bins=ebins__out)
+spec_det_err = np.sqrt(spec_det) / args.delT
 spec_det = spec_det / args.delT
 bins = (bins[:-1] + bins[1:]) / 2
 
@@ -71,10 +72,10 @@ spec_det_exp = np.matmul(rsp_matrix.T, nE)*dEin
 
 # plot both the spectra
 fig, ax = plt.subplots(1, 1, figsize=(8, 6))
-ax.loglog(bins, spec_det, label="Detected")
+ax.errorbar(bins, spec_det, yerr=spec_det_err, fmt='o', ms='3.5', elinewidth=1.2, label="Detected")
 ax.loglog(bins, spec_det_exp, label="Expected")
 ax.legend(fontsize=13)
 ax.set_xlabel("Energy (keV)", fontsize=13)
 ax.set_ylabel("counts / s", fontsize=13)
-fig.savefig("Verify_rsp.png", dpi=150)
+fig.savefig(rspfname.stem + "_check_plot.png", dpi=150)
 plt.show()

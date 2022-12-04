@@ -19,10 +19,10 @@ nphsim = args.nphsim
 rspfname = args.rspfname
 
 # Define input energy array
-inp_Energies = np.arange(20, 200.1, 5)
+inp_Energies = np.arange(20, 200.1, 1)
 
 # define the rsp matrix.
-dE = 5  # energy bins
+dE = 1  # energy bins
 ebins_out = np.arange(20. - dE/2, 200. + dE/2 + .1, dE)  # define output bins
 mat_rsp = np.zeros((inp_Energies.size, ebins_out.size - 1))
 
