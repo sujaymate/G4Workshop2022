@@ -6,25 +6,31 @@ area with lot of excitement in recent days with the IXPE mission and
 upcoming Indian mission XPoSat. Measurement of polarization in X-ray
 energies above ~10 keV makes use of the unique characteristics of Rayleigh
 and Compton scattering of the incident photons in detector systems. In
-this exercise, we will start with simple Geant4 simulations to understand
+this exercise, we will carry out simple Geant4 simulations to understand
 basic properties of Rayleigh/Compton scattering and how they are dependent
-on the polarization of incident beam and finally try simulations of some
-simple X-ray polarimeter configurations in different steps.
+on the polarization of incident beam and then do simulations of a
+simple X-ray polarimeter.
 
-1) In Geant4, setup a simulation as follows:
+### Problem 1: Scattering angle distributions
 
-  - A plastic scintillator rod (1 mm diameter, 50 mm long) as the active
-detector volume.
-  - Low energy Livermore polarized EM physics
-  - General particle source with parallel beam of mono energetic X-rays
-incident on the scintillator.
-  - If the interaction process in plastic scintillator is Rayleigh or
-Compton scattering, record the energy of the scattered photon as well as
-the direction (Hint: Post step point momentum).
-  - For each primary event, write out the above detail into a text file
+(**a**) Setup a Geant4 simulation as follows:
 
+  - Detector Construction: A plastic scintillator rod (1 mm diameter, 50 mm long) placed in 
+  the world volume. Plastic material is VinylToluene with mass fraction of Carbon 
+  and Hydrogen 0.915 and 0.085,respectively. Density is 1.032*g/cm3.  
+  - Physics list: Modular physics list - G4EmLivermorePolarizedPhysics
+  - Make a working Geant4 application and visualize. On visualizing, the detector should be visible similar to the below image.
 
-  (**a**) Carry out simulations with 10 keV, 20 keV, 50 keV, and 100 keV photons
+<img src="./images/PlasticScint.png" alt="Platsic scintillator" style="height: 300px; width:300px;"/>
+  
+(**b**) Now, setup primary particles for simulation using General Particle Source (GPS). Place a source emitting mono-energetic parallel gammas in front of the scintillator. Run the simulation with this source with tracking verbose set to 1. You should see gammas interacting with scintillator as shown in the below image. Look at the verbose output and see the different processes that the primary gammas undergo in the detector.   
+  
+<img src="./images/PlasticScintSim.png" alt="Platsic scintillator Simulation" style="height: 300px; width:300px;"/>
+
+  
+(**c**) By accessing the step point information using user stepping action, identify events undergoing rayleigh and compton scattering in the detector and record the scattered photon energy as well as the direction (Hint: Post-step point momentum). Note that we want to get only the first interaction of the primary gamma. For each primary event with scattering interaction, write out whether it was rayleigh or compton as well as the scattered photon energy and direction. Save the results in output text/root file.
+
+(**d**) Carry out simulations with 10 keV, 20 keV, 50 keV, and 100 keV photons
 and using the outputs from Geant4, plot the spectra of scattered photons
 (energy vs counts), histogram of scattering angle theta, and histogram
 of azimuthal angle phi as shown in the examples below. Try overplotting 
@@ -44,7 +50,7 @@ with the distribution of polar angles obtained from Geant4 simulations.
 </tr>
 </table>
 
-  (**b**) Repeat the above exercise with the same setup, but with the incident
+(**e**) Repeat the above exercise with the same setup, but with the incident
 photons polarized in specific direction. Plot the different distributions as above. Note the 
 difference in azimuthal scattering angle distributions as shown in figures below compared 
 to that of unpolarized photons. See how the distribution varies with different polarization 
@@ -57,39 +63,55 @@ directions.
 </tr>
 </table>
 
-(**c**) Have a look at how the azimuthal angle distribution for polarized photons vary when 
+(**f**) Additional excercise: Have a look at how the azimuthal angle distribution for polarized photons vary when 
 only photons of a selected range of theta values are considered, for example only between 60 
 to 120 degree. See how it compares with the azimuthal angle distribution for entire range 
 of theta values.
 
-2) From the above two steps, we understand that the azimuthal scattering
+### Problem 2: X-ray polarimeter simualtions
+
+From the above excercise, we understand that the azimuthal scattering
 angle distribution is dependent on the polarization characteristics of the
 incident beam. So, if we manage to measure the the azimuthal angle
 distribution of the scattered photons, we can measure the polarization of
 the incident beam, which is how scattering X-ray polarimeters work.
 
-So, let us do simulations of a simple ideal polarimeter as shown below. At
-the center is a plastic scintillator as we used in earlier steps and it is
-surrounded by a cylindrical detector.
+So, let us do simulations of a simple ideal polarimeter as shown in the image below. At
+the center is a plastic scintillator as we used in earlier step, but with diameter of 20 mm and it is
+surrounded by 12 CsI(Tl) detectors of dimensions 100 mm x 20 mm x 5 mm. CsI(Tl) consists of 51.0549% Cs, 
+48.0451% I, and 0.9% Tl by mass with a density of 4.51*g/cm3.
 
-(Picture of ideal polarimeter)
+<img src="./images/polarimeter.png" alt="Polarimeter" style="height: 300px; width:300px;"/>
 
-- Setup the above polarimeter geometry in Geant4 with the surrounding
-detector as CsI. Dimensions marked in the figure above.
+(**a**) Setup the above polarimeter geometry in Geant4. Using GPS, place a mono-energetic 
+parallel gamma source in front of the platsic scintillator to run the simulations like 
+shown in image below.
 
-- Carry out simulations with mono energetic parallel beam incident on the
-plastic scintillator rod.
+<img src="./images/polarimeterSim.png" alt="Polarimeter Simulation" style="height: 300px; width:300px;"/>
 
-- For events that are detected in the surrounding detector, record the
-azimuthal angle of the photon in plane perpendicular to the incident beam
-with respects to some reference axis. Record events for which there was
-some energy deposition in the plastic scintillator separately.
+(**b**) For each event, using the scoring method of choice, record the energy deposition in plastic 
+scintillator and each surrounding CsI detectors. For events having energy deposition in only one 
+of the CsI detectors with/without any energy deposition in plastic, write out the CsI detector number 
+as well as the energy depositions.
 
-- Generate histogram of azimuthal angles for all events detected in the
-surrounding detector as well as those having only coincident detection (ie, non-zero energy depositions above 
-some threshold, say 1 keV in the scattering plastic scintillator)
+(**c**) Carry out simulations with polarized (and unpolarized) photons of different energies and plot 
+histogram of the azimuthal angle distributions obtained from the CsI detector numbers. See what happens 
+when conditions of minimum energy deposition in plastic is considered for event selection. Some 
+representative plots are given below.
 
-Plot them for unpolarized incident beam as well as polarized incident beam
-with different polarization angles.
+<table>
+  <tr>
+<td><img src="./python-analysis/figures/polarimeterAzhist_60keV_PA00.png" alt="polarimeterAzhist_60keV_PA00.png" style="height: 300px; width:400px;"/></td>
+<td><img src="./python-analysis/figures/polarimeterAzhist_60keV_PA90.png" alt="polarimeterAzhist_60keV_PA90.png" style="height: 300px; width:400px;"/></td>
+</tr>
 
-(Show some representative result plots here).
+  <tr>
+<td><img src="./python-analysis/figures/polarimeterAzhist_20keV_PA00.png" alt="polarimeterAzhist_20keV_PA00.png" style="height: 300px; width:400px;"/></td>
+<td><img src="./python-analysis/figures/polarimeterAzhist_20keV_PA00.png" alt="polarimeterAzhist_20keV_PA00.png" style="height: 300px; width:400px;"/></td>
+</tr>
+</table>
+
+
+
+(**d**) Additional exercise: Try re-running the simulation with different diameters of the plastic 
+scintilattor and see how it affects the modulations seen in the azimuthal angle distributions.
