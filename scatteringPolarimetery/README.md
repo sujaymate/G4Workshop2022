@@ -2,9 +2,8 @@ Compton/Rayleigh scattering and X-ray polarimetry
 --------------------------------------------------
 
 Polarization measurements of astrophysical sources in X-ray energies is an
-area with lot of excitement in recent days with the IXPE mission and
-upcoming Indian mission XPoSat. Measurement of polarization in X-ray
-energies above ~10 keV makes use of the unique characteristics of Rayleigh
+area of great scientific interest, but not many measurements until recently. 
+Measurement of polarization in X-ray energies above ~10 keV makes use of the characteristics of Rayleigh
 and Compton scattering of the incident photons in detector systems. In
 this exercise, we will carry out simple Geant4 simulations to understand
 basic properties of Rayleigh/Compton scattering and how they are dependent
@@ -114,4 +113,4 @@ representative plots are given below.
 
 
 (**d**) Additional exercise: Try re-running the simulation with different diameters of the plastic 
-scintilattor and see how it affects the modulations seen in the azimuthal angle distributions.
+scintilator and see how it affects the modulations seen in the azimuthal angle distributions.
