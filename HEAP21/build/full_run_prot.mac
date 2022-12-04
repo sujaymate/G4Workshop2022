@@ -1,0 +1,23 @@
+/run/initialize
+/control/verbose 0
+#/run/verbose 2
+#/event/verbose 1
+#/tracking/verbose 1
+/tracking/verbose 1
+#/tracking/storeTrajectory 1
+
+/gps/particle proton
+
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 5 mm
+/gps/pos/halfy 5 mm
+/gps/pos/centre 0. 0. 20 cm
+/gps/pos/rot1 1. 0. 0.
+/gps/ang/type iso
+/gps/ang/maxtheta 0 deg
+
+
+/control/loop single_run_particle.mac Ekin 1000. 20000. 2000
+
+#/run/beamOn 1000
