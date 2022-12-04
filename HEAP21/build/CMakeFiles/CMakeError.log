@@ -1,22 +1,25 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/geant/G4_sri/HEAP21/build/CMakeFiles/CMakeTmp
+Change Dir: /home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CMakeScratch/TryCompile-MxdOxG
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_a5b34/fast && /usr/bin/make  -f CMakeFiles/cmTC_a5b34.dir/build.make CMakeFiles/cmTC_a5b34.dir/build
-make[1]: Entering directory '/home/geant/G4_sri/HEAP21/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a5b34.dir/src.c.o
-/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a5b34.dir/src.c.o -c /home/geant/G4_sri/HEAP21/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_a5b34
-/home/geant/G4/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5b34.dir/link.txt --verbose=1
-/usr/bin/cc CMakeFiles/cmTC_a5b34.dir/src.c.o -o cmTC_a5b34 
-/usr/bin/ld: CMakeFiles/cmTC_a5b34.dir/src.c.o: in function `main':
-src.c:(.text+0x46): undefined reference to `pthread_create'
-/usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
-/usr/bin/ld: src.c:(.text+0x5e): undefined reference to `pthread_cancel'
-/usr/bin/ld: src.c:(.text+0x6f): undefined reference to `pthread_join'
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_4eef2/fast && /usr/bin/make  -f CMakeFiles/cmTC_4eef2.dir/build.make CMakeFiles/cmTC_4eef2.dir/build
+make[1]: Entering directory '/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CMakeScratch/TryCompile-MxdOxG'
+Building C object CMakeFiles/cmTC_4eef2.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_4eef2.dir/src.c.o -c /home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CMakeScratch/TryCompile-MxdOxG/src.c
+Linking C executable cmTC_4eef2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4eef2.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/cmTC_4eef2.dir/src.c.o -o cmTC_4eef2 
+CMakeFiles/cmTC_4eef2.dir/src.c.o: In function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+src.c:(.text+0x4a): undefined reference to `pthread_detach'
+src.c:(.text+0x56): undefined reference to `pthread_cancel'
+src.c:(.text+0x67): undefined reference to `pthread_join'
+src.c:(.text+0x7b): undefined reference to `pthread_atfork'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_a5b34.dir/build.make:99: cmTC_a5b34] Error 1
-make[1]: Leaving directory '/home/geant/G4_sri/HEAP21/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_a5b34/fast] Error 2
+CMakeFiles/cmTC_4eef2.dir/build.make:98: recipe for target 'cmTC_4eef2' failed
+make[1]: *** [cmTC_4eef2] Error 1
+make[1]: Leaving directory '/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CMakeScratch/TryCompile-MxdOxG'
+Makefile:127: recipe for target 'cmTC_4eef2/fast' failed
+make: *** [cmTC_4eef2/fast] Error 2
 
 
 Source file was:
@@ -39,4 +42,5 @@ int main(void)
 
   return 0;
 }
+
 

@@ -29,12 +29,17 @@
 
 #include "CZTDetSimActionInitialization.hh"  
 #include "CZTDetSimPrimaryGeneratorAction.hh"
+//CZTDetSimActionInitialization::CZTDetSimActionInitialization()
+ //   : G4VUserActionInitialization()
+//{
 
-CZTDetSimActionInitialization::CZTDetSimActionInitialization()
+//}
+CZTDetSimActionInitialization::CZTDetSimActionInitialization(G4String dirname)
     : G4VUserActionInitialization()
 {
-
+outdir = dirname;
 }
+
 
 //***********************************************/
 
@@ -48,7 +53,7 @@ CZTDetSimActionInitialization::~CZTDetSimActionInitialization()
 void CZTDetSimActionInitialization::Build() const
 {
     SetUserAction(new CZTDetSimPrimaryGeneratorAction());
-    CZTDetSimRunAction *runAction = new CZTDetSimRunAction();
+    CZTDetSimRunAction *runAction = new CZTDetSimRunAction(outdir);
     SetUserAction(runAction);
-    SetUserAction(new CZTDetSimEventAction());
-}
+    SetUserAction(new CZTDetSimEventAction(outdir));
+   }

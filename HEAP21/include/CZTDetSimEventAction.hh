@@ -40,12 +40,14 @@ class CZTDetSimEventAction: public G4UserEventAction
 {
 
 	public:
-        CZTDetSimEventAction();
+	CZTDetSimEventAction();
+        CZTDetSimEventAction(G4String);
+
 		~CZTDetSimEventAction();
 
 		virtual void  BeginOfEventAction(const G4Event*);
 		virtual void  EndOfEventAction(const G4Event*);
-
+	G4String outdir;
     private:
           G4int HitsCollID;
 

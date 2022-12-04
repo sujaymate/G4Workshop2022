@@ -37,8 +37,10 @@ class CZTDetSimRunAction : public G4UserRunAction
 {
     public:
         CZTDetSimRunAction();
+	CZTDetSimRunAction(G4String);
+
         ~CZTDetSimRunAction();
-    
+   	G4String outdir, root_file_path; 
     virtual void BeginOfRunAction(const G4Run*);
     virtual void EndOfRunAction(const G4Run*);
 };

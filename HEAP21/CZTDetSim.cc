@@ -39,6 +39,7 @@
 #include "G4UImanager.hh"
 #include "G4UIExecutive.hh"
 #include "G4VisExecutive.hh"
+#include <iostream>
 
 int main(int argc, char** argv)
 {
@@ -47,7 +48,9 @@ int main(int argc, char** argv)
     if ( argc == 1 ){
         ui = new G4UIExecutive(argc, argv);
     }
-     
+    
+    std::cout<<"given directory is : "<< argv[2]<<"\n";
+    
     // Construct the run manager
     G4RunManager* runManager = new G4RunManager;
     
@@ -69,7 +72,14 @@ int main(int argc, char** argv)
     runManager->SetUserInitialization(new CZTDetSimPhysicsList());
 
     // User action Initialization
-    runManager->SetUserInitialization(new CZTDetSimActionInitialization());
+    G4String tmp_var;
+    if (argc == 3){
+    tmp_var = argv[2];	// passes the address of the output directory
+    }
+    else{
+	  tmp_var ="";
+    }
+    runManager->SetUserInitialization(new CZTDetSimActionInitialization(tmp_var));
 
     // Initialize visualization
     G4VisManager* visManager = new G4VisExecutive;

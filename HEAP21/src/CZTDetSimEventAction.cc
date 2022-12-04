@@ -33,11 +33,14 @@
 #include "G4SDManager.hh"
 
 
-CZTDetSimEventAction::CZTDetSimEventAction():HitsCollID(-1)
+//CZTDetSimEventAction::CZTDetSimEventAction():HitsCollID(-1)
+//{
+
+//}
+CZTDetSimEventAction::CZTDetSimEventAction(G4String dirname ):HitsCollID(-1)
 {
-
+ outdir = dirname; 
 }
-
 //***********************************************/
 
 CZTDetSimEventAction::~CZTDetSimEventAction()
@@ -70,9 +73,12 @@ void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
     auto hce = event->GetHCofThisEvent();
     auto fHitsCollection = hce->GetHC(0);
     //CZTDetSimHitCollection* fHitsCollection =0 ;
-
-    std::ofstream t1out("czt1_step_output.txt",std::ios::app);
-    std::ofstream t2out("czt1_edep.txt",std::ios::app);
+    G4String s1 = outdir+ G4String("czt1_step_output.txt");
+    G4String s2 = outdir+ G4String("czt1_edep.txt");
+    std::ofstream t1out(s1,std::ios::app);
+    std::ofstream t2out(s2,std::ios::app);
+   // std::ofstream t1out("czt1_step_output.txt",std::ios::app);
+   // std::ofstream t2out("czt1_edep.txt",std::ios::app);
 
     //if(hce) {
     //if(HitsCollID != -1) fHitsCollection = (CZTDetSimHitCollection*)(hce->GetHC(0));
@@ -80,6 +86,7 @@ void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
 
     G4int nCZTHits = 0;
     G4double totalEnergyDep_czt =0;
+    auto analysisManager = G4AnalysisManager::Instance();
 
     if(fHitsCollection)
     {
@@ -94,19 +101,30 @@ void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
           G4int pixPostStep_czt = aHit->GetPixID_post_czt();
           G4double interPosZ_czt = aHit->GetPos_z_czt();
           totalEnergyDep_czt += HitEnergy_czt;
-
-
-          if((aHit->GetModName_czt())=="czt")
+	  
+        
+          if(  (aHit->GetModName_czt()=="czt") && ( HitEnergy_czt > 0.0) )
 
           {
-          t1out<<event_id<<"\t"<<pixPostStep_czt<<"\t"<<HitEnergy_czt/keV<<"\t"<<interPosZ_czt/mm <<G4endl;
+         // t1out<<event_id<<"\t"<<pixPostStep_czt<<"\t"<<HitEnergy_czt/keV<<"\t"<<interPosZ_czt/mm <<G4endl;
+          t1out<<event_id<<"\t"<<pixPostStep_czt<<"\t"<<HitEnergy_czt/keV<<G4endl;
+	
+    	    analysisManager->FillNtupleIColumn(1, 0, event_id);
+            analysisManager->FillNtupleFColumn(1, 1, pixPostStep_czt);
+            analysisManager->FillNtupleFColumn(1, 2, HitEnergy_czt/keV);
+            analysisManager->AddNtupleRow(1);
 
           }
 
         }
-
+    if(totalEnergyDep_czt > 0.0){
     t2out<<event_id<<"\t"<<totalEnergyDep_czt/keV<<"\n";
 
+    	    analysisManager->FillNtupleIColumn(0, 0, event_id);
+            analysisManager->FillNtupleFColumn(0, 1, totalEnergyDep_czt);
+            analysisManager->AddNtupleRow(0);
+
+        }
    }
 
 }

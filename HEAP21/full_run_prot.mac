@@ -4,14 +4,7 @@
 #/event/verbose 1
 #/tracking/verbose 1
 /tracking/verbose 1
-
-#/vis/scene/create
-#/vis/open DAWNFILE
-#/vis/viewer/set/viewpointThetaPhi 60 150
-#/vis/viewer/zoom 1
-#/vis/viewer/flush
-/tracking/storeTrajectory 1
-#/vis/scene/endOfEventAction accumulate 
+#/tracking/storeTrajectory 1
 
 /gps/particle proton
 
@@ -25,6 +18,6 @@
 /gps/ang/maxtheta 0 deg
 
 
-/control/loop single_run.mac Ekin 1000. 20000. 2000
+/control/loop single_run_particle.mac Ekin 1000. 20000. 2000
 
 #/run/beamOn 1000

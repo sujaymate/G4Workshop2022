@@ -33,15 +33,17 @@
 #include "G4VUserActionInitialization.hh"
 #include "CZTDetSimEventAction.hh"
 #include "CZTDetSimRunAction.hh"
-
 class CZTDetSimPrimaryGeneratorAction;
 
 class CZTDetSimActionInitialization: public G4VUserActionInitialization
 {
 	public:
 		CZTDetSimActionInitialization();
+		CZTDetSimActionInitialization(G4String);
+		
 		virtual ~CZTDetSimActionInitialization();
 
 		virtual void Build() const;
+		G4String outdir;
 };
 #endif

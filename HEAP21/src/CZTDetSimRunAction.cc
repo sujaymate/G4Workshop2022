@@ -30,9 +30,16 @@
 #include "CZTDetSimRunAction.hh"
 #include "g4root.hh"
 
-CZTDetSimRunAction::CZTDetSimRunAction()
+//CZTDetSimRunAction::CZTDetSimRunAction()
+//: G4UserRunAction()
+//{
+//}
+
+CZTDetSimRunAction::CZTDetSimRunAction(G4String dirname)
 : G4UserRunAction()
 {
+	 outdir = dirname;
+	 
 }
 
 //***********************************************/
@@ -54,15 +61,26 @@ void CZTDetSimRunAction::BeginOfRunAction(const G4Run* run)
     // Define root filename based on runID.
     std::stringstream fname;
     fname << "CZTDetSimRun_" << std::setw(2) << std::setfill('0') << runID;
+	root_file_path = outdir+ fname.str();
+	G4cout<<"full address is "<<root_file_path<<"\n";
+	
+	analysisManager->SetFileName(root_file_path); 	
+    //analysisManager->SetFileName(fname.str());  // Set root filename
+    
+	analysisManager->OpenFile();
 
-    analysisManager->SetFileName(fname.str());  // Set root filename
-    analysisManager->OpenFile();
-
-    // create the ntuple
-    analysisManager->CreateNtuple("Edep", "Energy deposition in CZT");
+    // create the ntuples
+    analysisManager->CreateNtuple("Edep_total", "Total Energy deposition in CZT");
     analysisManager->CreateNtupleIColumn("eventID");
     analysisManager->CreateNtupleFColumn("totalEdep");
     analysisManager->FinishNtuple(0);
+
+    analysisManager->CreateNtuple("Edep_stepwise", "Step-wise Energy deposition in CZT");
+    analysisManager->CreateNtupleIColumn("eventID");
+    analysisManager->CreateNtupleFColumn("PixelID");
+    analysisManager->CreateNtupleFColumn("step_Edep");
+    analysisManager->FinishNtuple(1);
+
 }
 
 //***********************************************/
