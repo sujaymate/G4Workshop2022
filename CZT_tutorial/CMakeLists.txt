@@ -46,9 +46,7 @@ target_link_libraries(CZTDetSim ${Geant4_LIBRARIES})
 set(CZTDetSim_SCRIPTS
   init_vis.mac
   icons.mac
-  run_monoE.mac
-  run_monoE_loop.mac
-  run_pow.mac
+  run.mac
   single_run.mac
   run.png
   vis.mac
