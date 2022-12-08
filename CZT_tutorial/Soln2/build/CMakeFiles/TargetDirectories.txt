@@ -1,8 +1,0 @@
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CZTDetSim.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/CZTPhysicsSimulation.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/edit_cache.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/rebuild_cache.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/list_install_components.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/install.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/install/local.dir
-/home/purvi/Desktop/g4_try/HEAP21/build/CMakeFiles/install/strip.dir
