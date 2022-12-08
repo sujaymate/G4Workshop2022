@@ -126,7 +126,7 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
     CZTWaferLV->SetVisAttributes(CZTWaferVisatt);
 
     // CADMesh import
-    auto MaskMesh = CADMesh::TessellatedMesh::FromSTL("../G4Workshop2022/HEAP2/mask/CAM.stl");
+    auto MaskMesh = CADMesh::TessellatedMesh::FromSTL("../G4Workshop2022/CZT_tutorial/Soln1/mask/CAM.stl");
     G4VSolid* MaskS = MaskMesh->GetSolid();
     G4LogicalVolume* MaskLV = new G4LogicalVolume(MaskS, Ta, "MaskLV");
     G4VPhysicalVolume* mask = new G4PVPlacement(0,
