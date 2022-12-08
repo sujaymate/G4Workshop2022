@@ -47,14 +47,12 @@ CZTDetSimHit::~CZTDetSimHit()
 CZTDetSimHit::CZTDetSimHit(const CZTDetSimHit& right)
 : G4VHit()
 {
-    fTotalEdep = right.fTotalEdep;
 }
 
 //***********************************************/
 
 const CZTDetSimHit& CZTDetSimHit::operator=(const CZTDetSimHit& right)
 {
-    fTotalEdep = right.fTotalEdep;
     return *this;
 }
 
@@ -76,12 +74,10 @@ void CZTDetSimHit::Print()
 
 void CZTDetSimHit::AddEdep(G4double edep)
 {
-    fTotalEdep += edep;
 }
 
 //***********************************************/
 
 G4double CZTDetSimHit::GetEdep() const
 {
-    return fTotalEdep;
 }

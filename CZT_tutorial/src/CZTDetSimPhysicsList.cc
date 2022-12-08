@@ -27,43 +27,32 @@
  *  
  */
 
-#include "G4EmLivermorePolarizedPhysics.hh"
 #include "CZTDetSimPhysicsList.hh"
-#include "G4EmParameters.hh"
 
 CZTDetSimPhysicsList::CZTDetSimPhysicsList()
     : G4VModularPhysicsList(), fCZTDetSimPhysicsList(0)
 {
     // Register a new physic list to the physics constructor
-	fCZTDetSimPhysicsList = new G4EmLivermorePolarizedPhysics();
-    RegisterPhysics(fCZTDetSimPhysicsList);
 }
 
 //***********************************************/
 
 CZTDetSimPhysicsList::~CZTDetSimPhysicsList()
 {
-	delete fCZTDetSimPhysicsList;
 }
 
 //***********************************************/
 
 void CZTDetSimPhysicsList::ConstructParticle()
 {
-	fCZTDetSimPhysicsList->ConstructParticle();
 }
 
 //***********************************************/
 
 void CZTDetSimPhysicsList::ConstructProcess()
 {
-    AddTransportation();
-    fCZTDetSimPhysicsList->ConstructProcess();
 
-    // make sure to activate atomic de-excitation
-    auto EMparams = G4EmParameters::Instance();
-    EMparams->SetDeexActiveRegion("World", true, true, true);
-    EMparams->SetDeexcitationIgnoreCut(true);
+    // make sure to activate atomic de-excitation (hint: EM parameters class)
 }
 
 //***********************************************/

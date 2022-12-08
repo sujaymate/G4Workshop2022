@@ -31,8 +31,6 @@
 #define CZTDETSIMACTIONINITIALIZATION_H
 
 #include "G4VUserActionInitialization.hh"
-#include "CZTDetSimEventAction.hh"
-#include "CZTDetSimRunAction.hh"
 
 class CZTDetSimPrimaryGeneratorAction;
 

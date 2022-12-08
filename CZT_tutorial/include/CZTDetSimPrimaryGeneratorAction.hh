@@ -47,7 +47,7 @@ class CZTDetSimPrimaryGeneratorAction: public G4VUserPrimaryGeneratorAction
 		virtual void GeneratePrimaries(G4Event*);
 
 	public:
-		G4GeneralParticleSource* fgps;
+        // Define the general particle source globally
 
 };
 #endif

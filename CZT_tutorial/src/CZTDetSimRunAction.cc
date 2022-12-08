@@ -28,13 +28,10 @@
  */
 
 #include "CZTDetSimRunAction.hh"
-#include "g4root.hh"
 
 CZTDetSimRunAction::CZTDetSimRunAction()
 : G4UserRunAction()
 {
-    // Remove old root files
-    system("rm *.root"); 
 }
 
 //***********************************************/
@@ -47,33 +44,17 @@ CZTDetSimRunAction::~CZTDetSimRunAction()
 
 void CZTDetSimRunAction::BeginOfRunAction(const G4Run* run)
 {
+    // Define analysis manager at the each run start
     // Book Edep Ntuple
-    auto analysisManager = G4AnalysisManager::Instance();
-    G4cout << "Using " << analysisManager->GetType() << G4endl;
-    analysisManager->SetVerboseLevel(1);
-    G4int runID = run->GetRunID();
 
     // Define root filename based on runID.
-    std::stringstream fname;
-    fname << "CZTDetSimRun_" << std::setw(2) << std::setfill('0') << runID;
-
-    analysisManager->SetFileName(fname.str());  // Set root filename
-    analysisManager->OpenFile();
 
     // create the ntuple
-    analysisManager->CreateNtuple("Edep", "Energy deposition in CZT");
-    analysisManager->CreateNtupleIColumn("eventID");
-    analysisManager->CreateNtupleIColumn("pixID");
-    analysisManager->CreateNtupleFColumn("totalEdep");
-    analysisManager->FinishNtuple(0);
 }
 
 //***********************************************/
 
 void CZTDetSimRunAction::EndOfRunAction(const G4Run* run)
 {   
-    auto analysisManager = G4AnalysisManager::Instance();
-    analysisManager->Write();
-    analysisManager->CloseFile();
-    delete G4AnalysisManager::Instance();
+    // Close root file and delete analysis manager
 }

@@ -31,9 +31,6 @@
 #define CZTDETSIMDETECTORCONSTRUCTION_H
 
 #include "G4VUserDetectorConstruction.hh"
-#include "G4VSensitiveDetector.hh"
-
-#include "CZTDetSimSD.hh"
 
 class G4VPhysicalVolume;
 
@@ -47,9 +44,7 @@ class CZTDetSimDetectorConstruction: public G4VUserDetectorConstruction
 		virtual G4VPhysicalVolume* Construct();
 
 	private:
-
-		G4LogicalVolume* CZTWaferLV;
-		virtual void ConstructSDandField();
+        virtual void ConstructSDandField();
 
 };
 #endif

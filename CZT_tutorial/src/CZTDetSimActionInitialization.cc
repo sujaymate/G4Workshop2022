@@ -27,8 +27,7 @@
  *  
  */
 
-#include "CZTDetSimActionInitialization.hh"  
-#include "CZTDetSimPrimaryGeneratorAction.hh"
+#include "CZTDetSimActionInitialization.hh"
 
 CZTDetSimActionInitialization::CZTDetSimActionInitialization()
     : G4VUserActionInitialization()
@@ -47,8 +46,5 @@ CZTDetSimActionInitialization::~CZTDetSimActionInitialization()
 
 void CZTDetSimActionInitialization::Build() const
 {
-    SetUserAction(new CZTDetSimPrimaryGeneratorAction());
-    CZTDetSimRunAction *runAction = new CZTDetSimRunAction();
-    SetUserAction(runAction);
-    SetUserAction(new CZTDetSimEventAction());
+    // Set your user actions (primary generation, event action run action etc.)
 }

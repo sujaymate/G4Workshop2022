@@ -45,7 +45,7 @@ class CZTDetSimPhysicsList: public G4VModularPhysicsList
 		virtual void ConstructProcess();
 
 	private:
-		G4VPhysicsConstructor* fCZTDetSimPhysicsList;  // Define the physics constructor globally
+	    // Define the physics constructor globally
 
 };
 #endif

@@ -32,18 +32,15 @@
 CZTDetSimPrimaryGeneratorAction::CZTDetSimPrimaryGeneratorAction()
     : G4VUserPrimaryGeneratorAction()
 {
-    fgps = new G4GeneralParticleSource();
 }
 
 //***********************************************/
 
 CZTDetSimPrimaryGeneratorAction::~CZTDetSimPrimaryGeneratorAction()
 {
-	delete fgps;
 }
 //***********************************************/
 
 void CZTDetSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
-    fgps->GeneratePrimaryVertex(anEvent);
 }

@@ -31,7 +31,6 @@
 #define CZTDETSIMEVENTACTION_HH
 
 #include "G4UserEventAction.hh"
-#include "G4SystemOfUnits.hh"
 #include "G4Event.hh"
 
 class G4Event;

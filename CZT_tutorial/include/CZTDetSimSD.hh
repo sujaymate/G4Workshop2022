@@ -31,7 +31,6 @@
 #define CZTDETSIMSD_HH
 
 #include "G4VSensitiveDetector.hh" 
-#include "CZTDetSimHit.hh"
 
 class G4Step;
 class G4HCofThisEvent;
@@ -47,7 +46,7 @@ class CZTDetSimSD : public G4VSensitiveDetector
         virtual G4bool ProcessHits(G4Step* aStep, G4TouchableHistory* history);
 
     private:
-        CZTDetSimHitCollection* fHitsCollection;
+        // Define hits collection globally from Hits class
     
 };
 

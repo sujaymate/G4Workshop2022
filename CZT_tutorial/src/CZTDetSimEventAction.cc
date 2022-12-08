@@ -28,8 +28,6 @@
  */
 
 #include "CZTDetSimEventAction.hh"
-#include "CZTDetSimHit.hh"
-#include "g4root.hh"
 
 CZTDetSimEventAction::CZTDetSimEventAction()
 {
@@ -54,29 +52,8 @@ void CZTDetSimEventAction::BeginOfEventAction(const G4Event* event)
 void CZTDetSimEventAction::EndOfEventAction(const G4Event* event)
 {
     // Get the eventID
-    G4int evtID = event->GetEventID();
     
     // Get hits collections of this event
-    auto hce = event->GetHCofThisEvent();
-    auto aHitsCollection = hce->GetHC(0);
-    
-    unsigned nHits = aHitsCollection->GetSize();
 
-    // Loop over all pixel hits
-    for (unsigned i=0; i<nHits; i++)
-    {
-        auto aHit = static_cast<CZTDetSimHit*>(aHitsCollection->GetHit(i));
-        G4double EdepTotal = aHit->GetEdep();
-
-        // store the edep along with the pixel ID if the value is non-zero
-        if (EdepTotal > 0.)
-        {
-            // call analysis manager
-            auto analysisManager = G4AnalysisManager::Instance();
-            analysisManager->FillNtupleIColumn(0, 0, evtID);
-            analysisManager->FillNtupleIColumn(0, 1, i);
-            analysisManager->FillNtupleFColumn(0, 2, EdepTotal);
-            analysisManager->AddNtupleRow(0);
-        }
-    }
+    // Loop over all hits and store the ouput in the analysis manager
 }
