@@ -40,7 +40,7 @@ target_link_libraries(ScatPol ${Geant4_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(ScatPol_SCRIPTS
- 	gps.mac vis.mac init_vis.mac icons.mac verbose.out scat_abs_parameters.txt 
+ 	gps.mac vis.mac init_vis.mac icons.mac scat_abs_parameters.txt 
  )
 
 foreach(_script ${ScatPol_SCRIPTS})
