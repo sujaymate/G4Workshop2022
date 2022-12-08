@@ -10,6 +10,7 @@
 #include "G4UIExecutive.hh"
 #include "G4VisExecutive.hh"
 
+
 int main(int argc, char** argv)
 {
     // Detect interactive mode (if no arguments) and define UI session
@@ -21,7 +22,15 @@ int main(int argc, char** argv)
     // Construct the run manager & Set initialization classes
     // Detector construction, Physics List, User action Initialization
 
+    G4RunManager* runManager = new G4RunManager;
 
+    runManager->SetUserInitialization(new ScatPolDetectorConstruction());
+
+    runManager->SetUserInitialization(new ScatPolPhysicsList());
+
+    runManager->SetUserInitialization(new ScatPolActionInitialization());
+    
+    runManager->Initialize();
 
 
     // Initialize visualization
@@ -41,9 +50,6 @@ int main(int argc, char** argv)
     else { 
         // interactive mode
         UImanager->ApplyCommand("/control/execute init_vis.mac");
-        if (ui->IsGUI()) {
-            UImanager->ApplyCommand("/control/execute icons.mac");
-        }
         ui->SessionStart();
     }
 

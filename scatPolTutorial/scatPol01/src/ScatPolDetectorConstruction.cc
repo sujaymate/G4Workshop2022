@@ -38,17 +38,10 @@ ScatPolDetectorConstruction::~ScatPolDetectorConstruction()
 G4VPhysicalVolume* ScatPolDetectorConstruction::Construct()
 {
 
-// Use this for material filling world volume - G4_GALACTIC
+// Use this for material filling world volume - G4_Galactic
 
   G4NistManager*  nist = G4NistManager::Instance();
-  G4Material* galacticMat= nist->FindOrBuildMaterial("G4_GALACTIC");
-
-/*
-  G4double universe_mean_density=1.e-25*g/cm3;
-  
-  G4Material* Vacuum =new G4Material("Galactic", z=1., a=1.01*g/mole,density= universe_mean_density,
-                           kStateGas, 2.73*kelvin, 3.e-18*pascal);
-*/
+  G4Material* galacticMat = nist->FindOrBuildMaterial("G4_Galactic");
 
 // Define world volume large enough to accomodate the detector    
 
