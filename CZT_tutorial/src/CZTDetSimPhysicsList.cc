@@ -30,7 +30,7 @@
 #include "CZTDetSimPhysicsList.hh"
 
 CZTDetSimPhysicsList::CZTDetSimPhysicsList()
-    : G4VModularPhysicsList(), fCZTDetSimPhysicsList(0)
+    : G4VModularPhysicsList()
 {
     // Register a new physic list to the physics constructor
 }

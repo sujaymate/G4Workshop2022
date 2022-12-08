@@ -70,7 +70,7 @@ G4VPhysicalVolume* CZTDetSimDetectorConstruction::Construct()
 
     // Set visualisation attributes for mask (problem 5)
 
-    return worldPV;  // Always return the world volume !!!!!
+    // Always return the world volume !!!!!
 }
 
 void CZTDetSimDetectorConstruction::ConstructSDandField()

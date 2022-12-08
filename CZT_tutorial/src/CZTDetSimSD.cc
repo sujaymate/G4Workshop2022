@@ -33,7 +33,7 @@
 
 CZTDetSimSD::CZTDetSimSD(const G4String &name,
                          const G4String &hitsCollectionName)
-: G4VSensitiveDetector(name),
+: G4VSensitiveDetector(name)
 {
 }
 
@@ -64,13 +64,12 @@ G4bool CZTDetSimSD::ProcessHits(G4Step *aStep, G4TouchableHistory *history)
     // Define pixel size
 
     // Exit if edep is zero
-    if (edep > 0.)
-    {
-        // Get energy deposition position (Problem 3 onwards)
+        
+    // Get energy deposition position (Problem 3 onwards)
 
-        // Pixellate the detector according the expected scheme (Problem 3 onwards)
+    // Pixellate the detector according the expected scheme (Problem 3 onwards)
 
-        // Access the hit of this pixel and add the edep (for problem 2 directly add the edep to the hit)
-    }
+    // Access the hit of this pixel and add the edep (for problem 2 directly add the edep to the hit)
+    
     return true;
 }
