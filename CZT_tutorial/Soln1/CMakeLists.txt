@@ -37,8 +37,6 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 add_executable(CZTDetSim CZTDetSim.cc ${sources} ${headers})
 target_link_libraries(CZTDetSim ${Geant4_LIBRARIES})
-target_link_libraries(CZTDetSim cfitsio)
-target_link_libraries(CZTDetSim CCfits)
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
