@@ -33,8 +33,6 @@
 CZTDetSimRunAction::CZTDetSimRunAction()
 : G4UserRunAction()
 {
-    // Remove old root files
-    system("rm *.root"); 
 }
 
 //***********************************************/
