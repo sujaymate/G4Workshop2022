@@ -19,7 +19,7 @@ parser.add_argument("--norm", type=int, default=2, help="Power-law norm")
 parser.add_argument("--alpha", type=float, default=-1, help="Power-la photon index")
 parser.add_argument("--emin", type=float, default=10, help="Min. energy in power-law spec simulation")
 parser.add_argument("--emax", type=float, default=210, help="Min. energy in power-law spec simulation")
-parser.add_argument("--delT", type=float, default=2000, help="Source duration")
+parser.add_argument("--delT", type=float, default=1000, help="Source duration")
 args = parser.parse_args()
 
 rootfname = Path(args.rootfname)
