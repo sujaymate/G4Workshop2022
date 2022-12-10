@@ -1,0 +1,24 @@
+# Macro file for example ED
+# 
+# Can be run in batch, without graphic
+# or interactively: Idle> /control/execute run1.mac
+#
+#/control/cout/setCoutFile verbose.txt
+/run/initialize
+
+/control/verbose 0
+/tracking/verbose 0
+/event/verbose 0
+
+/gps/verbose 0
+/gps/particle gamma
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 19.68 mm
+/gps/pos/halfy 19.68 mm
+/gps/pos/centre 0 0 5 cm
+/gps/direction 0 0 -1
+/gps/ene/type Mono
+/gps/ene/mono 50 keV
+
+/run/beamOn 100000

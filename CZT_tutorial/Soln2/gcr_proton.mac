@@ -1,0 +1,28 @@
+/run/initialize
+#/control/verbose 0
+#/run/verbose 2
+#/event/verbose 1
+#/tracking/verbose 1
+/tracking/verbose 1
+
+#/tracking/storeTrajectory 1
+
+/gps/particle proton
+
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/halfx 1 mm
+/gps/pos/halfy 1 mm
+/gps/pos/centre 0. 0. 20 cm
+/gps/pos/rot1 1. 0. 0.
+/gps/ang/type iso
+/gps/ang/maxtheta 4 deg
+
+
+/gps/ene/type Pow
+/gps/ene/min 0.1 GeV
+/gps/ene/max 10. GeV
+/gps/ene/alpha -2.1
+
+
+/run/beamOn 1000000
